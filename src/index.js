@@ -1,6 +1,7 @@
 import './css/styles.css';
 import { countryAPIFetch } from './fetchCountries';
 import debounce from 'lodash.debounce';
+import { Notify } from "notiflix";
 
 const ref = {
   input: document.querySelector('#search-box'),
@@ -15,28 +16,45 @@ ref.input.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 function handleInput(e) {
   e.preventDefault();
   let inputValue = e.target.value.trim();
-  if (inputValue === '') {
+  if (!inputValue) {
     return;
-  } else {
-    countryAPIFetch(inputValue);
+  }
 
+  countryAPIFetch(inputValue)
+    .then((data) => {
+      console.log(data);
+      if (data.length > 10) {
+        Notify.info("Too many matches found. Please enter a more specific name.");
+        return;
+      } else if (data.length > 2 && data.length <= 10) {
+        console.log(data.length > 2 && data.length <= 10);
+        countryListMarkup(data);
+      } else if (data.length === 1) {
+        countryInfoMarkup(data);
+      };
+    })
+    .catch((error) => {
+      Notify.failure("Oops, there is no country with that name");
+    });
   };
+
+function countryListMarkup(countriesData) {
+  return data.map(country => {
+    `<li>
+      <svg width="70" height="50"><use href="${country.flags.svg}"></use></svg>
+      <p>${country.name.official}</p>
+    </li>`;
+  }).join('');
 };
 
-function countriesListMarkup(countriesData) {
-  return countriesData.map(country => {
+function countryInfoMarkup(countryData) {
+  return countryData.map(country => {
     return `
-      <li class="countries-list">
-        <li class="countries-info">
-          <h2>${country.name.offical}</h2>
-          <p><strong>Capital:</strong>${country.capital}</p>
-          <p><strong>Population:</strong>${country.population}</p>
-          <p><strong>Languages:</strong>${country.languages}</p>
-          <svg width="100" height="100">
-          <use href="${country.flags.svg}"></use></svg>
-        </li>
-      </li>
-    `;
+      <svg width="100" height="80"><use href="${country.flags.svg}"></use></svg>
+      <h1>${country.name.offical}</h1>
+      <p><b>Capital:</b>${country.capital}</p>
+      <p><b>Population:</b>${country.population}</p>
+      <p><b>Languages:</b>${country.languages}</p>`;
   }).joing(' ');
 };
-  
+
