@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -20,4 +22,32 @@ body {
   padding: 8px;
   max-width: 320px;
   margin-bottom: 16px;
+  margin-top: 8px;
+  margin-left: 8px;
 }
+
+.country-list {
+  list-style: none;
+  margin-left: 12px;
+}
+
+.country-list__item {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.country-list__img {
+  margin-right: 8px;
+}
+
+.country-info {
+  margin-left: 8px;
+}
+
+.country-info__img-header-container {
+  display: flex;
+  align-items: center;
+}
+
+
