@@ -13,45 +13,23 @@ const DEBOUNCE_DELAY = 300;
 
 ref.input.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
 
-function handleInput(e) {
-  e.preventDefault();
-  let inputValue = e.target.value.trim();
-  if (inputValue === '') {
-    ref.countryList.innerHTML = '';
-    ref.countryInfo.innerHTML = '';
-    return;
-  }
-
-  countryAPIFetch(inputValue)
-    .then((data) => {
-      console.log(data);
-      if (data.length > 20) {
-        ref.countryList.innerHTML = '';
-        ref.countryInfo.innerHTML = '';
-        Notify.info("Too many matches found. Please enter a more specific name.");
-        return;
-      };
-      
-      if (data.length >= 2 && data.length <= 20) {
-        console.log(data.length >= 2 && data.length <= 20);
-        ref.countryInfo.innerHTML = '';
-        const countryListMarkUp = createCountryListMarkup(data);
-        ref.countryList.innerHTML = countryListMarkUp;
-      };
-      
-      if (data.length === 1) {
-        ref.countryList.innerHTML = '';
-        const countryInfoMarkup = createCountryInfoMarkup(data);
-        ref.countryInfo.innerHTML = countryInfoMarkup;
-      };
-
-    })
-    .catch((error) => {
-      ref.countryList.innerHTML = '';
-      ref.countryInfo.innerHTML = '';
-      Notify.failure("Oops, there is no country with that name");
-    });
-  };
+function createCountryInfoMarkup(countryData) {
+  return countryData.map((country) => 
+    `<ul class="country-info__list">
+      <li class="country-info__item">
+        <div class="country-info__img-header-container">
+          <img class="country-info__img" src="${country.flags.svg}" alt="${country.flags.alt}" width="20" height="20">
+          <h1 class="country-info__header">${country.name.official}</h1>
+        </div>
+        <div class="country-info__details-container">
+          <p class="country-info__details"><b>Capital: </b>${country.capital}</p>
+          <p class="country-info__details"><b>Population: </b>${country.population}</p>
+          <p class="country-info__details"><b>Languages: </b>${Object.values(country.languages)}</p>
+        </div>
+      </li>
+    </ul>`
+  ).join(' ');
+};
 
 function createCountryListMarkup(countriesData) {
   return countriesData.map((country) =>
@@ -71,21 +49,43 @@ function createCountryListMarkup(countriesData) {
   ).join(' ');
 };
 
-function createCountryInfoMarkup(countryData) {
-  return countryData.map((country) => 
-    `<ul class="country-info__list">
-      <li class="country-info__item">
-        <div class="country-info__img-header-container">
-          <img class="country-info__img" src="${country.flags.svg}" alt="${country.flags.alt}" width="20" height="20">
-          <h1 class="country-info__header">${country.name.official}</h1>
-        </div>
-        <div class="country-info__details-container">
-          <p class="country-info__details"><b>Capital: </b>${country.capital}</p>
-          <p class="country-info__details"><b>Population: </b>${country.population}</p>
-          <p class="country-info__details"><b>Languages: </b>${Object.values(country.languages)}</p>
-        </div>
-      </li>
-    </ul>`
-  ).join(' ');
+function handleAPIFetch(inputValue) {
+  countryAPIFetch(inputValue)
+    .then((data) => {
+      console.log(data);
+      if (data.length > 20) {
+        ref.countryList.innerHTML = '';
+        ref.countryInfo.innerHTML = '';
+        Notify.info("Too many matches found. Please enter a more specific name.");
+        return;
+      } else if (data.length >= 2 && data.length <= 20) {
+        console.log(data.length >= 2 && data.length <= 20);
+        ref.countryInfo.innerHTML = '';
+        const countryListMarkUp = createCountryListMarkup(data);
+        ref.countryList.innerHTML = countryListMarkUp;
+      } else if (data.length === 1) {
+        ref.countryList.innerHTML = '';
+        const countryInfoMarkup = createCountryInfoMarkup(data);
+        ref.countryInfo.innerHTML = countryInfoMarkup;
+      };
+    })
+    .catch((error) => {
+      ref.countryList.innerHTML = '';
+      ref.countryInfo.innerHTML = '';
+      Notify.failure("Oops, there is no country with that name");
+    });
 };
+
+function handleInput(e) {
+  let inputValue = e.target.value.trim();
+  if (inputValue === '') {
+    ref.countryList.innerHTML = '';
+    ref.countryInfo.innerHTML = '';
+    return;
+  } else {
+    handleAPIFetch(inputValue);
+  };
+};
+
+
 

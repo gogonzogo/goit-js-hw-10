@@ -7,7 +7,7 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
+  background-color: #f9f9f9;
 }
 
 #search-box {
@@ -17,8 +17,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
   font-weight: 400;
-  
-
 }
 
 /*  COUNTRY LIST STYLES  */
@@ -36,7 +34,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding-bottom: 10px;
-  background-color: rgba(0, 0, 0, 0.34);
+  background-color: rgb(139, 139, 139);
   backdrop-filter: blur(1px);
   border: 1px solid #EEEEEE;
   cursor: pointer;
@@ -52,9 +50,9 @@ body {
 }
 
 .country-list__item:hover {
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
-      0px 4px 4px rgba(0, 0, 0, 0.06),
-      1px 4px 6px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 1px 1px rgb(255, 255, 255),
+      0px 4px 4px rgb(246, 246, 246),
+      1px 4px 6px rgb(255, 255, 255);
   transform: translate(0);
 }
 
@@ -63,27 +61,26 @@ body {
 }
 
 .country-list__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 46, 249, 0.613);
-   opacity: 0.5;
-    transform: translatey(100%);
-    transition: transform 250ms ease;
-    
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(208, 224, 212, 0.613);
+  opacity: 0.5;
+  transform: translatey(100%);
+  transition: transform 250ms ease;
 }
 
 .country-list__overlay-text {
-    display: flex;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: calc(28/18);
-    letter-spacing: 0.03em;
-    color: #ffffff;
+  display: flex;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: calc(28/18);
+  letter-spacing: 0.03em;
+  color: #ffffff;
 }
 
 .country-list__text-container {
@@ -91,16 +88,14 @@ body {
 }
 
 .country-list__country-name {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: calc(24/20);
-    text-align:center;
-    letter-spacing: 0.03em;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: calc(24/20);
+  text-align:center;
+  letter-spacing: 0.03em;
 }
 
-
 /* COUNTRY INFO STYLES */
-
 .country-info {
   margin-left: 8px;
 }
@@ -110,32 +105,3 @@ body {
   align-items: center;
 }
 
-:focus{
-outline: none;
-}
-
-.input-container {
-  position: relative;
-}
-
-#search-box{
-color: #1d9af2;
-box-sizing: border-box;
-letter-spacing: 1px;
-background-color: rgb(19, 23, 44);
-border: none;
-}
-
-.effect-1~.focus-border{
-position: absolute;
-left: 656px;
-bottom: 21px;
-width: 0;
-height: 2px;
-background-color: #3399FF;
-transition: 0.4s;
-}
-.effect-1:focus~.focus-border {
-width: 320px;
-transition: 0.4s;
-}
