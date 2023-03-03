@@ -11,7 +11,7 @@ function flyToCountry(cordinates) {
   };
   const end = {
     center: [cordinates[0], cordinates[1]],
-    zoom: 1,
+    zoom: 3,
     // bearing: 130,
     pitch: 40
   };

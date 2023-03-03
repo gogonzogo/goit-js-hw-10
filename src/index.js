@@ -10,11 +10,43 @@ const ref = {
   input: document.querySelector('#search-box'),
   countryList: document.querySelector('.country-list'),
   countryInfo: document.querySelector('.country-info'),
+  flyBtn: document.querySelector('#fly'),
 };
+
+ref.flyBtn.disabled = true;
 
 const DEBOUNCE_DELAY = 300;
 
 ref.input.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
+
+function handleAPIFetch(inputValue) {
+  countryAPIFetch(inputValue)
+    .then((data) => {
+      if (data.length > 10) {
+        ref.countryList.innerHTML = '';
+        ref.countryInfo.innerHTML = '';
+        Notify.info("Too many matches found. Please enter a more specific name.");
+        return;
+      } else if (data.length >= 2 && data.length <= 10) {
+        ref.countryInfo.innerHTML = '';
+        const countryListMarkUp = createCountryListMarkup(data);
+        ref.countryList.innerHTML = countryListMarkUp;
+      } else if (data.length === 1) {
+        ref.countryList.innerHTML = '';
+        const countryInfoMarkup = createCountryInfoMarkup(data);
+        ref.countryInfo.innerHTML = countryInfoMarkup;
+        let flyTo = getCordinates(data);
+        flyToCountry(flyTo);
+        ref.flyBtn.disabled = false;
+      };
+    })
+    .catch((error) => {
+      // flyToCountry([80, 36]);
+      ref.countryList.innerHTML = '';
+      ref.countryInfo.innerHTML = '';
+      Notify.failure("Oops, there is no country with that name");
+    });
+};
 
 function createCountryInfoMarkup(countryData) {
   return countryData.map((country) => 
@@ -52,33 +84,6 @@ function createCountryListMarkup(countriesData) {
   ).join(' ');
 };
 
-function handleAPIFetch(inputValue) {
-  countryAPIFetch(inputValue)
-    .then((data) => {
-      if (data.length > 20) {
-        ref.countryList.innerHTML = '';
-        ref.countryInfo.innerHTML = '';
-        Notify.info("Too many matches found. Please enter a more specific name.");
-        return;
-      } else if (data.length >= 2 && data.length <= 20) {
-        ref.countryInfo.innerHTML = '';
-        const countryListMarkUp = createCountryListMarkup(data);
-        ref.countryList.innerHTML = countryListMarkUp;
-      } else if (data.length === 1) {
-        ref.countryList.innerHTML = '';
-        const countryInfoMarkup = createCountryInfoMarkup(data);
-        ref.countryInfo.innerHTML = countryInfoMarkup;
-        let flyTo = getCordinates(data);
-        flyToCountry(flyTo);
-      };
-    })
-    .catch((error) => {
-      ref.countryList.innerHTML = '';
-      ref.countryInfo.innerHTML = '';
-      Notify.failure("Oops, there is no country with that name");
-    });
-};
-
 function handleInput(e) {
   let inputValue = e.target.value.trim();
   if (inputValue === '') {
@@ -90,10 +95,10 @@ function handleInput(e) {
   };
 };
 
-
 function getCordinates(data) {
-  const cordinates = data.flatMap(country => country.latlng);
-  return cordinates.reverse();
-}
+    let cordinates = data.flatMap(country => country.latlng);
+    return cordinates.reverse();
+  }
 
+flyToCountry([80, 36]);
 
