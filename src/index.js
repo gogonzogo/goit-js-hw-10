@@ -1,7 +1,10 @@
 import './css/styles.css';
-import { countryAPIFetch } from './fetchCountries';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import { countryAPIFetch } from './js/fetchCountries';
 import debounce from 'lodash.debounce';
 import { Notify } from "notiflix";
+import mapboxgl from 'mapbox-gl';  // or "const mapboxgl = require('mapbox-gl');"
+import { flyToCountry } from './js/mapbox';
 
 const ref = {
   input: document.querySelector('#search-box'),
@@ -52,14 +55,12 @@ function createCountryListMarkup(countriesData) {
 function handleAPIFetch(inputValue) {
   countryAPIFetch(inputValue)
     .then((data) => {
-      console.log(data);
       if (data.length > 20) {
         ref.countryList.innerHTML = '';
         ref.countryInfo.innerHTML = '';
         Notify.info("Too many matches found. Please enter a more specific name.");
         return;
       } else if (data.length >= 2 && data.length <= 20) {
-        console.log(data.length >= 2 && data.length <= 20);
         ref.countryInfo.innerHTML = '';
         const countryListMarkUp = createCountryListMarkup(data);
         ref.countryList.innerHTML = countryListMarkUp;
@@ -67,6 +68,8 @@ function handleAPIFetch(inputValue) {
         ref.countryList.innerHTML = '';
         const countryInfoMarkup = createCountryInfoMarkup(data);
         ref.countryInfo.innerHTML = countryInfoMarkup;
+        let flyTo = getCordinates(data);
+        flyToCountry(flyTo);
       };
     })
     .catch((error) => {
@@ -87,5 +90,10 @@ function handleInput(e) {
   };
 };
 
+
+function getCordinates(data) {
+  const cordinates = data.flatMap(country => country.latlng);
+  return cordinates.reverse();
+}
 
 

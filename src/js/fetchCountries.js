@@ -1,5 +1,5 @@
 function countryAPIFetch(countryName) {
-  return fetch(`https://restcountries.com/v3.1/name/${countryName}?fields=name,capital,population,flags,languages`)
+  return fetch(`https://restcountries.com/v3.1/name/${countryName}?fields=name,capital,population,flags,languages,latlng`)
     .then(response => {
       if (!response.ok) {
         throw new Error(response.status);
