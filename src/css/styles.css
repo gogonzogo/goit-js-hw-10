@@ -1,3 +1,4 @@
+/* GLOBAL STYLES */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,53 +11,148 @@ body {
   background-color: #f9f9f9;
 }
 
-#search-box {
-  padding: 8px;
-  width: 320px;
-  margin-bottom: 20px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 30px;
-  font-weight: 400;
+header {
+  background-color: rgb(218, 162, 58);
+  padding: 15px;
+  position: absolute;
+  z-index: 1001;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
+footer {
+  background-color: rgb(218, 162, 58);
+  color: #fff;
+  padding: 15px;
+  position: absolute;
+  z-index: 1001;
+  width: 100%;
+  bottom: 0;
+}
+
+p {
+  margin-bottom: 0;
+  word-wrap: break-word;
+}
+
+/* HEADER */
+/* card card-body p{
+  background-color: #f9f9f9;
+  
+  color: black;
+} */
+
+/* dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  background-color: #1e265a;
+}
+
+.btn-secondary {
+  background-color: #1e265a;
+  border-color: #1e265a;
+}
+
+.btn-primary {
+  background-color: #1e265a;
+  border-color: #1e265a;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #1e265a;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.logo-text {
+  font-family: 'Old Standard TT', serif;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  margin: 0;
+}
+
+.logo-motto {
+  font-family: 'Abril Fatface', cursive;
+}
+
+/* MAIN BODY STYLES */
 #search-box {
-      z-index: 1000;
-      position: absolute;
-      }
+  padding: 8px;
+  width: 600px;
+  margin-bottom: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: inset 0 10px 10px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  position: absolute;
+  top: 120px;
+  left: 20px;
+}
 
-      .country-list {
-      z-index: 1000;
-      position: absolute;
-      margin-top: 100px;
-      }
+.country-list {
+  font-size: small;
+  z-index: 1000;
+  position: absolute;
+  top: 200px;
+  color: white;
+  max-width: 700px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 
-      .country-info {
-      z-index: 1000;
-      position: absolute;
-      margin-top: 100px;
-      }
-      
-    #map {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
+.country-list li {
+  list-style: none;
+  cursor: pointer;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+}
 
-    #fly {
-display: block;
-position: relative;
-margin: 0px auto;
-width: 50%;
-height: 40px;
-padding: 10px;
-border: none;
-border-radius: 3px;
-font-size: 12px;
-text-align: center;
-color: #fff;
-background: #ee8a65;
-z-index: 1000;
+.country-info {
+  z-index: 1000;
+  position: absolute;
+  margin-top: 200px;
+  color: white;
+}
+
+.country-info li {
+  list-style: none;
+  max-width: 600px;
+}
+  
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 96%;
+  z-index: 1;
+}
+
+#fly {
+  display: block;
+  position: relative;
+  left: 70%;
+  width: 25%;
+  border: none;
+  font-size: 70px;
+  color: rgb(218, 162, 58);
+  background: none;
+  z-index: 1000;
+  top: 100px;
+  cursor: pointer;
 }

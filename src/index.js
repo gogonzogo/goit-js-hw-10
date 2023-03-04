@@ -18,10 +18,12 @@ ref.flyBtn.disabled = true;
 const DEBOUNCE_DELAY = 300;
 
 ref.input.addEventListener('input', debounce(handleInput, DEBOUNCE_DELAY));
+ref.countryList.addEventListener('click', handleCountryListClick);
 
 function handleAPIFetch(inputValue) {
   countryAPIFetch(inputValue)
     .then((data) => {
+      console.log(data);
       if (data.length > 10) {
         ref.countryList.innerHTML = '';
         ref.countryInfo.innerHTML = '';
@@ -41,7 +43,6 @@ function handleAPIFetch(inputValue) {
       };
     })
     .catch((error) => {
-      // flyToCountry([80, 36]);
       ref.countryList.innerHTML = '';
       ref.countryInfo.innerHTML = '';
       Notify.failure("Oops, there is no country with that name");
@@ -52,15 +53,11 @@ function createCountryInfoMarkup(countryData) {
   return countryData.map((country) => 
     `<ul class="country-info__list">
       <li class="country-info__item">
-        <div class="country-info__img-header-container">
-          <img class="country-info__img" src="${country.flags.svg}" alt="${country.flags.alt}" width="20" height="20">
+          <img class="country-info__img" src="${country.flags.svg}" alt="${country.flags.alt}" width="200">
           <h1 class="country-info__header">${country.name.official}</h1>
-        </div>
-        <div class="country-info__details-container">
           <p class="country-info__details"><b>Capital: </b>${country.capital}</p>
           <p class="country-info__details"><b>Population: </b>${country.population}</p>
           <p class="country-info__details"><b>Languages: </b>${Object.values(country.languages)}</p>
-        </div>
       </li>
     </ul>`
   ).join(' ');
@@ -69,17 +66,11 @@ function createCountryInfoMarkup(countryData) {
 function createCountryListMarkup(countriesData) {
   return countriesData.map((country) =>
     `<li class="country-list__item">
-      <div class="country-list__overlay-container">
-        <img class="country-list__img" src="${country.flags.svg}" alt="${country.flags.alt}" width="200" >
-        <div class="country-list__overlay">
+        <img class="country-list__img" src="${country.flags.svg}" alt="${country.flags.alt}" width="50" >
+          <h6 class="country-list__country-name">${country.name.official}</h6>
           <p class="country-list__overlay-text"><b>Capital: </b>${country.capital}</p>
           <p class="country-list__overlay-text"><b>Population: </b>${country.population}</p>
           <p class="country-list__overlay-text"><b>Languages: </b>${Object.values(country.languages)}</p>
-        </div>
-      </div>
-      <div class="country-list__text-container">
-        <p class="country-list__country-name">${country.name.official}</p>
-      </div>
     </li>`
   ).join(' ');
 };
@@ -87,11 +78,24 @@ function createCountryListMarkup(countriesData) {
 function handleInput(e) {
   let inputValue = e.target.value.trim();
   if (inputValue === '') {
+    flyToCountry([42, 43.5]);
     ref.countryList.innerHTML = '';
     ref.countryInfo.innerHTML = '';
     return;
   } else {
     handleAPIFetch(inputValue);
+  };
+};
+
+function handleCountryListClick(e) {
+  console.log(e.target.parentElement);
+  if (!e.target.parentElement === "LI") {
+    return;
+  } else {
+    let countryName = e.target.parentElement.querySelector('.country-list__country-name').textContent;
+    console.log(countryName);
+    handleAPIFetch(countryName);
+    ref.input.value = countryName;
   };
 };
 
@@ -101,4 +105,16 @@ function getCordinates(data) {
   }
 
 flyToCountry([80, 36]);
+
+Notify.init({
+  position: 'center-top',
+  width: '600px',
+  height: '100px',
+  fontSize: '20px'
+});
+
+
+
+
+
 
