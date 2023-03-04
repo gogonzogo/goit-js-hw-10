@@ -1,5 +1,4 @@
 import './css/styles.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { countryAPIFetch } from './js/fetchCountries';
 import debounce from 'lodash.debounce';
 import { Notify } from "notiflix";
