@@ -21,18 +21,19 @@
           <p class="logo-text">Gonzo Country Lookup <br/>
           <span class="logo-motto">Why Google, when you can Gonzo?</span></p>
       </div>
-      <div class="dropdown" data-bs-theme="dark">
+      <div class="dropdown menu" data-bs-theme="dark">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonDark" data-bs-toggle="dropdown"
           aria-expanded="false">
           Menu
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonDark">
-          <li><a class="dropdown-item" href="#">About</a></li>
+          <li><a class="dropdown-item active" href="./index.html">Home</a></li>
+          <li><a class="dropdown-item" href="./about.html">About</a></li>
           <li><a class="dropdown-item" href="https://github.com/gogonzogo/goit-js-hw-10" target="_blank">GitHub Repo</a></li>
           <li><a class="dropdown-item" href="https://linkedin.com/in/jose-gonzales" target="_blank">Connect on LinkedIn</a></li>
         </ul>
       </div>
-      <div class="dropdown" data-bs-theme="dark">
+      <div class="dropdown resources" data-bs-theme="dark">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonDark" data-bs-toggle="dropdown"
           aria-expanded="false">
           Resources Used
@@ -50,32 +51,36 @@
           <li><a class="dropdown-item" href="https://goit.global/us/" target="_blank">GoIT</a></li>
         </ul>
       </div>
-      <div>
+      <div class="info-btn__container">
         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
           aria-expanded="false" aria-controls="collapseExample">
           <i class="fas fa-info-circle"></i>
         </button>
         <div class="collapse" id="collapseExample">
           <div class="card card-body">
-            <p>This is a simple country lookup app that uses the REST Countries API to display information about a country. It
-              also uses the Mapbox API to display a map of the country.</p>
-            <p>Enter a country name in the search box to begin. As a list of countries populates finish typing or click on the country in the list to display the country's
+            <p><b>Overview: </b>This is a simple country lookup app that uses the REST Countries API to display information about
+              a country.<br />
+              It also uses the Mapbox API to display a map of the country.</p>
+            <p><b>Step 1: </b>Enter a country name in the search box. <br />
+              NOTE: As a list of countries populates you can, finish typing or click on the country from the list to display the
+              country's
               information and find it on the map.</p>
-            <p>Click on the plane icon to fly in to the country for a closer look.</p>
-            <p>The map also supports click to drag and scroll to zoom.</p>
+            <p><b>Step 2: </b>Click on the plane icon to "fly" to the country for a closer look.</p>
+            <p>NOTE: The map also supports click to drag and scroll to zoom.</p>
             <p>Happy exploring!</p>
           </div>
         </div>
       </div>
     </header>
-    <input type="text" id="search-box" placeholder="Enter country name"/>
-    <ul class="country-list"></ul>
-    <div class="country-info"></div>
-    
-    <div id="map"></div>
-    <br>
-    <button id="fly" class="fa-solid fa-plane-departure"></button>
-
+    <main>
+      <input type="text" id="search-box" placeholder="Enter country name"/>
+      <ul class="country-list"></ul>
+      <div class="country-info"></div>
+      
+      <div id="map"></div>
+      <br>
+      <button id="fly" class="fa-solid fa-plane-departure"></button>
+    </main>
     <footer>
       
     </footer>

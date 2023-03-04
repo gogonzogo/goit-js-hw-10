@@ -1,0 +1,40 @@
+.background-image__container {
+  background-image: url(../images/worldInHand.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+header {
+  position: fixed;
+  top: 0;
+}
+
+footer {
+  position: fixed;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+.about-text__container {
+  width: 600px;
+  height: fit-content;
+  background-color: white;
+  margin-left: 40px;
+  border-radius: 4px;
+  padding: 15px;
+  text-align: center;
+}

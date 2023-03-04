@@ -19,7 +19,6 @@ header {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   gap: 5px;
 }
 
@@ -31,6 +30,7 @@ footer {
   z-index: 1001;
   width: 100%;
   bottom: 0;
+  padding-top: 31px;
 }
 
 p {
@@ -39,11 +39,9 @@ p {
 }
 
 /* HEADER */
-/* card card-body p{
-  background-color: #f9f9f9;
-  
-  color: black;
-} */
+.card-body{
+  width: 900px;
+}
 
 /* dropdown on hover */
 .dropdown:hover .dropdown-menu {
@@ -57,11 +55,18 @@ p {
 .btn-secondary {
   background-color: #1e265a;
   border-color: #1e265a;
+  margin-top: 15px;
 }
 
 .btn-primary {
   background-color: #1e265a;
   border-color: #1e265a;
+  margin-top: 15px;
+}
+
+.btn-primary:hover {
+  background-color: #6c757d;
+  border-color: #6c757d;
 }
 
 .logo-container {
@@ -70,6 +75,7 @@ p {
   padding: 10px;
   background-color: #1e265a;
   width: fit-content;
+  height: 70px;
   border-radius: 5px;
 }
 
@@ -139,7 +145,7 @@ p {
   top: 0;
   bottom: 0;
   width: 100%;
-  height: 96%;
+  height: 95%;
   z-index: 1;
 }
 
@@ -150,7 +156,7 @@ p {
   width: 25%;
   border: none;
   font-size: 70px;
-  color: rgb(218, 162, 58);
+  color: white;
   background: none;
   z-index: 1000;
   top: 100px;

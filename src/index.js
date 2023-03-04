@@ -23,7 +23,6 @@ ref.countryList.addEventListener('click', handleCountryListClick);
 function handleAPIFetch(inputValue) {
   countryAPIFetch(inputValue)
     .then((data) => {
-      console.log(data);
       if (data.length > 10) {
         ref.countryList.innerHTML = '';
         ref.countryInfo.innerHTML = '';
@@ -56,7 +55,7 @@ function createCountryInfoMarkup(countryData) {
           <img class="country-info__img" src="${country.flags.svg}" alt="${country.flags.alt}" width="200">
           <h1 class="country-info__header">${country.name.official}</h1>
           <p class="country-info__details"><b>Capital: </b>${country.capital}</p>
-          <p class="country-info__details"><b>Population: </b>${country.population}</p>
+          <p class="country-info__details"><b>Population: </b>${parseInt(country.population).toLocaleString("en-US")}</p>
           <p class="country-info__details"><b>Languages: </b>${Object.values(country.languages)}</p>
       </li>
     </ul>`
@@ -66,14 +65,16 @@ function createCountryInfoMarkup(countryData) {
 function createCountryListMarkup(countriesData) {
   return countriesData.map((country) =>
     `<li class="country-list__item">
-        <img class="country-list__img" src="${country.flags.svg}" alt="${country.flags.alt}" width="50" >
+        <img class="country-list__img" src="${country.flags.svg}" alt="${country.flags.alt}" width="100" >
           <h6 class="country-list__country-name">${country.name.official}</h6>
           <p class="country-list__overlay-text"><b>Capital: </b>${country.capital}</p>
-          <p class="country-list__overlay-text"><b>Population: </b>${country.population}</p>
+          <p class="country-list__overlay-text"><b>Population: </b>${parseInt(country.population).toLocaleString("en-US")}</p>
           <p class="country-list__overlay-text"><b>Languages: </b>${Object.values(country.languages)}</p>
     </li>`
   ).join(' ');
 };
+
+
 
 function handleInput(e) {
   let inputValue = e.target.value.trim();
