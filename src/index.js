@@ -1,8 +1,9 @@
 import './css/styles.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { countryAPIFetch } from './js/fetchCountries';
 import debounce from 'lodash.debounce';
 import { Notify } from "notiflix";
-import mapboxgl from 'mapbox-gl';  // or "const mapboxgl = require('mapbox-gl');"
+import mapboxgl from 'mapbox-gl'; 
 import { flyToCountry } from './js/mapbox';
 
 const ref = {
@@ -73,8 +74,6 @@ function createCountryListMarkup(countriesData) {
   ).join(' ');
 };
 
-
-
 function handleInput(e) {
   let inputValue = e.target.value.trim();
   if (inputValue === '') {
@@ -88,12 +87,10 @@ function handleInput(e) {
 };
 
 function handleCountryListClick(e) {
-  console.log(e.target.parentElement);
   if (!e.target.parentElement === "LI") {
     return;
   } else {
     let countryName = e.target.parentElement.querySelector('.country-list__country-name').textContent;
-    console.log(countryName);
     handleAPIFetch(countryName);
     ref.input.value = countryName;
   };
