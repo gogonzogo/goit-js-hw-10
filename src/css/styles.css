@@ -79,6 +79,7 @@ p {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   margin-top: 15px;
+  font-weight: bolder;
 }
 
 .btn-primary {
