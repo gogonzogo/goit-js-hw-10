@@ -4,14 +4,12 @@ function flyToCountry(cordinates) {
   const start = {
     center: [cordinates[0], cordinates[1]],
     zoom: 1,
-    pitch: 25,
-    bearing: 50
+    pitch: 25
   };
   const end = {
     center: [cordinates[0], cordinates[1]],
     zoom: 5,
-    pitch: 40,
-    bearing: 0
+    pitch: 40
   };
   const map = new mapboxgl.Map({
     container: 'map',
@@ -54,7 +52,7 @@ function flyToCountry(cordinates) {
 
     map.flyTo({
       ...target, // Fly to the selected target
-      duration: 11500, // Animate over 12 seconds
+      duration: 12500, // Animate over 12 seconds
       essential: true // This animation is considered essential with
       //respect to prefers-reduced-motion
     });
