@@ -8,7 +8,7 @@ function flyToCountry(cordinates) {
   };
   const end = {
     center: [cordinates[0], cordinates[1]],
-    zoom: 6,
+    zoom: 4,
     pitch: 40
   };
   const map = new mapboxgl.Map({
