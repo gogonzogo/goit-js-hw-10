@@ -61,6 +61,8 @@ p {
 
 .dropdown-menu {
   background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  border-width: 5px;
 }
 
 .dropdown-item:hover,
