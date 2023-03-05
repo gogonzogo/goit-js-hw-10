@@ -1,21 +1,31 @@
 /* GLOBAL STYLES */
+:root {
+  --accent-color: rgb(30,38,90);
+  --accent-color-opaque: rgba(30,38,90, 0.5);
+  --accent-color-hover: rgb(108,117,125);
+  --primary-color: rgb(218, 162, 58);
+  --primary-color-opaque: rgba(218, 162, 58, 0.5);
+  --primary-color-hover: rgb(209, 158, 64);
+  --primary-text-color: rgb(255,255,255);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 0;;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f9f9f9;
+  background-color: rgb(249,249,249);
 }
 
 header {
-  background-color: rgb(218, 162, 58);
+  background-color: var(--primary-color);
   padding: 15px;
   position: absolute;
-  z-index: 1001;
+  z-index: 3;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -23,11 +33,11 @@ header {
 }
 
 footer {
-  background-color: rgb(218, 162, 58);
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
   padding: 15px;
   position: absolute;
-  z-index: 1001;
+  z-index: 2;
   width: 100%;
   bottom: 0;
   padding-top: 31px;
@@ -40,40 +50,55 @@ p {
 
 /* HEADER */
 .card-body{
-  width: 900px;
+  width: 830px;
 }
 
-/* dropdown on hover */
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu,
+.dropdown:focus .dropdown-menu,
+.dropdown:active .dropdown-menu {
   display: block;
 }
 
 .dropdown-menu {
-  background-color: #1e265a;
+  background-color: var(--accent-color);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item:active {
+  background-color: var(--primary-color-hover);
+  color: var(--primary-text-color);
+}
+
+.active-item {
+  background-color: var(--primary-color-hover);
+  color: var(--primary-text-color);
 }
 
 .btn-secondary {
-  background-color: #1e265a;
-  border-color: #1e265a;
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
   margin-top: 15px;
 }
 
 .btn-primary {
-  background-color: #1e265a;
-  border-color: #1e265a;
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
   margin-top: 15px;
 }
 
-.btn-primary:hover {
-  background-color: #6c757d;
-  border-color: #6c757d;
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: var(--accent-color-hover);
+  border-color: var(--accent-color-hover);
 }
 
 .logo-container {
   display: flex;
   align-items: center;
   padding: 10px;
-  background-color: #1e265a;
+  background-color: var(--accent-color);
   width: fit-content;
   height: 70px;
   border-radius: 5px;
@@ -82,8 +107,9 @@ p {
 .logo-text {
   font-family: 'Old Standard TT', serif;
   font-weight: 600;
-  color: rgb(255, 255, 255);
+  color: var(--primary-text-color);
   margin: 0;
+  cursor: default;
 }
 
 .logo-motto {
@@ -101,43 +127,73 @@ p {
   text-align: center;
   border-radius: 4px;
   box-shadow: inset 0 10px 10px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
+  z-index: 2;
   position: absolute;
   top: 120px;
   left: 20px;
+  outline: none;
+}
+
+input:hover,
+input:focus,
+input:focus {
+  border-width: 4px;
+  border-color: var(--primary-color);
 }
 
 .country-list {
-  font-size: small;
-  z-index: 1000;
   position: absolute;
   top: 200px;
-  color: white;
-  max-width: 700px;
+  max-width: 640px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 20px;
+  
 }
 
-.country-list li {
+.country-list__item {
+  font-size: small;
+  z-index: 2;
   list-style: none;
   cursor: pointer;
   width: 100px;
   display: flex;
   flex-direction: column;
+  color: var(--primary-text-color);
+  background-color: var(--accent-color-opaque);
+  border-radius: 5px;
+  
+}
+
+.country-list-info__container {
+  margin-left: 5px;
+}
+
+.country-list__img {
+  margin-bottom: 5px;
+}
+
+.country-list__item:hover,
+.country-list__item:focus,
+.country-list__item:active {
+  background-color: var(--accent-color-hover);
 }
 
 .country-info {
-  z-index: 1000;
+  list-style: none;
+  z-index: 2;
   position: absolute;
   margin-top: 200px;
-  color: white;
+  color: var(--primary-text-color);
 }
 
-.country-info li {
+.country-info__item {
   list-style: none;
   max-width: 600px;
+  background-color: var(--accent-color-opaque);
+  border-radius: 5px;
+  padding: 5px;
 }
   
 #map {
@@ -150,15 +206,20 @@ p {
 }
 
 #fly {
-  display: block;
   position: relative;
-  left: 70%;
-  width: 25%;
+  left: 77%;
   border: none;
   font-size: 70px;
-  color: white;
+  color: var(--primary-text-color);
   background: none;
-  z-index: 1000;
-  top: 100px;
+  z-index: 1;
+  top: 90px;
   cursor: pointer;
+  width: fit-content;
+}
+
+#fly:hover,
+#fly:focus,
+#fly:active {
+  color: var(--primary-color-hover);
 }

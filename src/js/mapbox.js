@@ -4,12 +4,15 @@ function flyToCountry(cordinates) {
   const start = {
     center: [cordinates[0], cordinates[1]],
     zoom: 1,
-    pitch: 25
+    pitch: 25,
+    bearing: 50
   };
   const end = {
     center: [cordinates[0], cordinates[1]],
-    zoom: 4,
-    pitch: 40  };
+    zoom: 5,
+    pitch: 40,
+    bearing: 0
+  };
   const map = new mapboxgl.Map({
     container: 'map',
     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
