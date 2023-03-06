@@ -147,7 +147,7 @@ input:focus {
 .country-list {
   position: absolute;
   top: 200px;
-  max-width: 640px;
+  max-width: 600px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -160,17 +160,19 @@ input:focus {
   z-index: 2;
   list-style: none;
   cursor: pointer;
-  width: 100px;
+  width: 150px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   color: var(--primary-text-color);
   background-color: var(--accent-color-opaque);
   border-radius: 5px;
-  
+  padding: 5px 5px 0 5px;
 }
 
-.country-list-info__container {
-  margin-left: 5px;
+.country-list__country-name{
+  text-align: center;
 }
 
 .country-list__img {

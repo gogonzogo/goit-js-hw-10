@@ -67,12 +67,7 @@ function createCountryListMarkup(countriesData) {
   return countriesData.map((country) =>
     `<li class="country-list__item">
         <img class="country-list__img" src="${country.flags.svg}" alt="${country.flags.alt}" width="100" >
-        <div class="country-list-info__container">
-          <h6 class="country-list__country-name">${country.name.official}</h6>
-          <p class="country-list__overlay-text"><b>Capital: </b>${country.capital}</p>
-          <p class="country-list__overlay-text"><b>Population: </b>${parseInt(country.population).toLocaleString("en-US")}</p>
-          <p class="country-list__overlay-text"><b>Languages: </b>${Object.values(country.languages)}</p>
-        </div>
+        <h6 class="country-list__country-name">${country.name.official}</h6>
     </li>`
   ).join(' ');
 };
