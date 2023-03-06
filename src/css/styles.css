@@ -19,6 +19,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(249,249,249);
+  cursor: default;
 }
 
 header {
@@ -54,8 +55,7 @@ p {
 }
 
 .dropdown:hover .dropdown-menu,
-.dropdown:focus .dropdown-menu,
-.dropdown:active .dropdown-menu {
+.dropdown:focus .dropdown-menu {
   display: block;
 }
 
@@ -66,8 +66,7 @@ p {
 }
 
 .dropdown-item:hover,
-.dropdown-item:focus,
-.dropdown-item:active {
+.dropdown-item:focus {
   background-color: var(--primary-color-hover);
   color: var(--primary-text-color);
 }
@@ -91,8 +90,7 @@ p {
 }
 
 .btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active {
+.btn-primary:focus {
   background-color: var(--accent-color-hover);
   border-color: var(--accent-color-hover);
 }
@@ -138,7 +136,6 @@ p {
 }
 
 input:hover,
-input:focus,
 input:focus {
   border-width: 4px;
   border-color: var(--primary-color);
@@ -180,8 +177,7 @@ input:focus {
 }
 
 .country-list__item:hover,
-.country-list__item:focus,
-.country-list__item:active {
+.country-list__item:focus {
   background-color: var(--accent-color-hover);
 }
 
