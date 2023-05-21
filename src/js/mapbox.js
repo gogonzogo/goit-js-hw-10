@@ -46,15 +46,12 @@ function flyToCountry(cordinates) {
   let isAtStart = true;
 
   document.getElementById('fly').addEventListener('click', () => {
-    // depending on whether we're currently at point a or b,
-    // aim for point a or b
     const target = end;
 
     map.flyTo({
-      ...target, // Fly to the selected target
-      duration: 12500, // Animate over 12 seconds
-      essential: true // This animation is considered essential with
-      //respect to prefers-reduced-motion
+      ...target,
+      duration: 12500,
+      essential: true 
     });
   });
 }
